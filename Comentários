@@ -1,71 +1,39 @@
-# Devolutiva formativa — Atividade 01 da SA
+
+# Devolutiva formativa — Atividade 02 da SA
 
 **Estudante:** Alan  
 **Turma:** Rio Negrinho — Tarde  
-**Unidade Curricular:** Programação de Aplicativos  
-**Projeto escolhido:** Streaming de vídeo  
-**Código analisado:** `codigo/app.py`  
-**Referência:** Situação de Aprendizagem nº 1 — *Da Ideia ao Código*
+**UC:** Programação de Aplicativos  
+**Projeto:** Streaming de vídeo e busca de conteúdos  
+**Repositório:** https://github.com/Sparkx66/SA-Alan
 
-## O que você já conseguiu desenvolver
+## Pontos positivos
 
-Parabéns pelo avanço, Alan! Seu projeto vai além de apresentar funções isoladas: você organizou um fluxo inicial de cadastro, entrada e saída de usuários, pesquisa, histórico e avaliação de conteúdos.
+- Aplicação Flask com cadastro, login, pesquisa, histórico e perfil.
+- Banco de dados SQLite integrado.
+- Utilização de hash de senhas.
+- Organização das páginas HTML e dos estilos CSS.
+- Funções para operações de cadastro e consulta.
 
-Pontos positivos identificados no código:
+## Melhorias necessárias
 
-- Você utilizou **rotas e funções do Flask** para separar operações como `/cadastro`, `/login`, `/pesquisar`, `/historico` e `/avaliar`.
-- Utilizou **hash de senha** com `generate_password_hash()` e verificação com `check_password_hash()`, em vez de armazenar a senha diretamente no dicionário.
-- Incluiu **validações de entrada**: campos obrigatórios, usuário duplicado, conteúdo vazio e notas fora do intervalo de 1 a 5.
-- Criou uma regra coerente para **avaliar somente conteúdos previamente pesquisados** e registrou a data de cada pesquisa.
-- Documentou a intenção de usar dicionários provisoriamente e realizar a integração com SQL em uma etapa posterior.
+1. Atualizar o README com as instruções de instalação e execução.
+2. Tratar falhas de comunicação com serviços externos.
+3. Revisar configurações de sessão e depuração.
+4. Registrar os resultados dos testes de autenticação.
 
-## O que precisa ser corrigido
+## Testes recomendados
 
-### 1. A rota de perfil permite consultar dados de outros usuários
+- Cadastrar um usuário fictício e acessar o sistema.
+- Pesquisar um conteúdo.
+- Consultar o histórico.
+- Testar credenciais inválidas.
+- Verificar o comportamento quando o serviço externo não responde.
 
-Na rota `/perfil/<username>`, o programa verifica se o usuário existe, mas não confirma se quem acessa o endereço é o dono daquele perfil. Assim, o histórico e as avaliações podem ser exibidos para outra pessoa.
+## Próximos passos
 
-**Como melhorar:** exigir autenticação e verificar se `session.get("username")` corresponde ao `username` solicitado antes de mostrar esses dados. Se o acesso não for permitido, retornar uma resposta de acesso negado.
-
-### 2. Configuração inadequada para publicação
-
-O código contém uma chave de sessão fixa (`app.secret_key`) e utiliza `app.run(debug=True)`. Essa configuração pode ser utilizada apenas em um ambiente local de aprendizagem, mas **não deve ser publicada como configuração de produção**.
-
-**Como melhorar:** manter a chave fora do código-fonte, em configuração de ambiente, e desativar o modo de depuração ao disponibilizar o sistema publicamente.
-
-## Oportunidades de melhoria
-
-### 3. Persistência de dados
-
-Atualmente, os dicionários `usuarios`, `historicos` e `avaliacoes` guardam as informações apenas enquanto o programa está em execução. Ao reiniciar a aplicação, esses registros são perdidos. **Isso não é uma falha na Atividade 01**, pois você explicou que está prototipando as rotas antes do SQL.
-
-**Próximo passo:** na etapa de integração, organizar entidades e relacionamentos e substituir gradualmente o armazenamento temporário por banco de dados.
-
-### 4. Documentação e manutenção
-
-Há comentários úteis, mas parte do funcionamento das rotas ainda precisa ser deduzida pela leitura do código. O bloco de texto logo após `app = Flask(__name__)` também pode ser transformado em comentário de contexto mais próximo dos dicionários aos quais se refere.
-
-**Como melhorar:** adicionar descrições curtas às funções, explicar entradas, resultados e regras importantes e incluir no README instruções específicas para executar e testar *seu* projeto.
-
-### 5. Comprovação do funcionamento
-
-O código contempla casos de erro, porém não encontrei no repositório testes automatizados específicos da aplicação. O endereço externo montado pela rota `/pesquisar` também deve ser verificado em uso real para confirmar se direciona à página esperada.
-
-**Como melhorar:** demonstrar, no mínimo, estes cenários:
-
-1. Cadastro e login com dados válidos.
-2. Tentativa de cadastro duplicado e login com senha incorreta.
-3. Pesquisa de conteúdo seguida de avaliação válida e inválida.
-4. Tentativa de acesso ao perfil de outro usuário, confirmando que é bloqueada.
-
-## Prioridades para a próxima versão
-
-1. **Corrigir o controle de acesso à rota de perfil.**
-2. **Separar configurações de desenvolvimento das configurações de publicação.**
-3. **Documentar a execução do projeto e registrar testes com seus resultados.**
+Priorize a documentação, o tratamento de erros e a confirmação de que todas as páginas funcionam em um ambiente limpo.
 
 ## Mensagem final
 
-Alan, seu código demonstra aprendizado em organização por funções, controle de fluxo, validação de entradas e uso de ferramentas de programação. Você já construiu uma base útil para evoluir a aplicação. O mais importante agora é **verificar a segurança dos dados e demonstrar que as funcionalidades se comportam como esperado**, inclusive nos casos de erro. Continue evoluindo o projeto por etapas e registrando suas melhorias no GitHub.
-
----
+Alan, seu sistema apresenta integração entre Python, formulários e banco de dados. Continue aprimorando a confiabilidade e a organização do projeto.
